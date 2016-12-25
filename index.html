@@ -1,10 +1,315 @@
 <!DOCTYPE html>
-<html lang="da">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Den digitale familie</title>
+
+	<meta charset="utf-8">
+
+	<title>Den digitale familie</title>
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!--<link rel="icon" type="image/png" href="img/small-logo-01.png" />-->
+	<link href="css/spore-font.css" rel="stylesheet" />
+	<style>
+
+		/* CONTENT BODY SETTINGS - DON'T TOUCH ! */
+
+		html,body{
+			height: 100%; /** Adaptative screen **/
+			margin:0;padding:0;
+		}
+
+		/* HEADER / BODY */
+
+		.blank{
+			position:relative; /** Div for the transition when your leave the url - fade out/in white color **/
+			width:100%;
+			height:100%;
+			z-index:50;
+			background-color:#FFF;
+		}
+
+
+		#A0{
+			background: url(img/gallery-in-a-page.jpg)  50% 50% no-repeat; /** Background image - change it here !**/
+			position:absolute;
+			background-size: cover;
+			-webkit-background-size:cover;
+			-moz-background-size:cover;
+			-o-background-size:cover;
+			background-size:cover;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			z-index:1;
+
+		}
+
+		#A1-main{
+			position:relative; /** Main div to adapt all the element to the body**/
+			width:100%;
+			height:100%;
+			z-index:1;
+		}
+
+
+		#A1{
+			position:relative; /** Sub div to adapt the background for the body**/
+			width:100%;
+			height:100%;
+			z-index:1;
+		}
+
+
+		#A0-2{
+			background-color:#101613; /** Transparent background across the background **/
+			opacity:0.5;
+			position:absolute;
+			width:100%;
+			height:100%;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			z-index:2;
+		}
+
+		#trame{
+			background-image: url(img/trame.svg); /** Pattern - overlay **/
+			background-repeat:repeat;
+			position:absolute;
+			width:100%;
+			height:100%;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			z-index:3;
+			opacity:0.8;
+		}
+
+		#wrapper-head{
+			position:absolute; /** Main div for the title, arrow icon and button learn more **/
+			height:100%;
+			width:100%;
+			z-index:5;
+			opacity:0;
+			top:0;
+		}
+
+		#title{
+			position:absolute;
+			z-index:4;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			text-align:center;
+			font-size:24px;
+			line-height:130%;
+			color:#FFF;
+			font-family: 'open_sansregular';
+			width:50%;
+			margin-left:25%;
+			height:100%;
+			top:50%;
+		}
+
+		#wrapper-learnmore{
+			position:absolute;
+			width:140px;
+			height:45px;
+			left:50%;
+			margin-left:-70px;
+			top:65%;
+			opacity:1;
+			z-index:4;
+			cursor:pointer;
+		}
+
+		.bouton-learnmore{
+			position:absolute;
+			width:100%;
+			height:100%;
+			left:0;
+			opacity:1;
+			top:0;
+			background-color:transparent;
+			border:solid 2px #FFF;
+			border-radius:10px;
+		}
+
+		.text-learnmore{
+			position:absolute;
+			z-index:1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			text-align:center;
+			font-size:18px;
+			line-height:45px;
+			height:45px;
+			color:#FFF;
+			font-family: 'open_sanssemibold';
+			width:80%;
+			margin-left:10%;
+		}
+
+		#A3-left-image-2 img,#A3-left-image-3 img,#A3-middle-image-4 img,#A3-middle-image-5 img,#A3-middle-image-6 img,#A3-right-image-8 img,#A3-right-image-9 img{
+			width:100%;
+		}
+
+		/* ARTICLES FOR THE VIDEO - EXTENDED DIV NECESSARY TO WATCH THE VIDEO*/
+
+		iframe {
+			width:100%;
+			height:auto;
+		}
+
+		.video-container-1 iframe,.video-container-6 iframe,.video-container-7 iframe,.video-container-1 object,.video-container-6 object,.video-container-7 object,.video-container-1 embed,.video-container-6 embed,.video-container-7 embed {
+			width:100%;
+			height:100%;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+
+
+
+		/* RESPONSIVE DESIGN ! IMPORTANT DONT TOUCH IT */
+
+		/* X-LARGE */
+		@media (max-width: 1500px) {
+		}
+
+		/* VERY LARGE SCREEN */
+		@media (max-width: 1280px) {
+		}
+
+		/* PERSONNAL RESPONSIVE DESIGN FOR COMPUTER SMALL SCREEN, MEDIA SCREEN AND IPAD HORIZONTAL*/
+		@media (max-width: 1080px) {
+		}
+
+		/*HYBRID*/
+		@media (max-width: 1000px) {
+		}
+
+		/*FOR VERTICAL IPAD NATIVE 801px INCLUDING THE NEW TABLETS HYBRID*/
+		@media (max-width: 801px) {
+			#title{font-size:22px;line-height:130%;width:60%;margin-left:20%;top:40%;}
+		}
+
+		/* MQUERIES ADDITIONAL FOR SMARTPHONE IPHONE 3 & 4 VERTICAL POSITION BY HEIGHT*/
+		@media (max-width: 320px) {
+		}
+
+		/* MEDIA QUERIES FOR HYBRID MOBILE*/
+		@media (max-height: 650px) {
+			#title{font-size:19px;line-height:130%;width:60%;margin-left:20%;top:34%;}
+			#wrapper-learnmore{top:74%;}
+			#fleche1{display:none;}
+
+		}
+
+		/* MEDIA QUERIES FOR IPHONE 5 VERTICAL AND OLD VERSION*/
+		@media (max-height: 568px) {
+			#title{font-size:17px;line-height:130%;width:60%;margin-left:20%;top:37%;}
+		}
+
+		/* MQUERIES ADDITIONAL FOR SMARTPHONE IPHONE 3 & 4 HORIZONTAL POSITIONBY HEIGHT*/
+		@media (max-height: 330px) {
+		}
+
+
+
+	</style>
+
 </head>
 <body>
+
+<div id="A1-main">
+
+	<div id="A1">
+
+		<div class="blank"></div>
+
+		<div id="A0"></div>
+		<div id="A0-2"></div>
+		<div id="trame"></div>
+
+		<div id="wrapper-head">
+			<div id="title" class="object">Den Digitale Famillie - teknologi i hverdagen.</div>
+			<div id="wrapper-learnmore">
+				<div class="bouton-learnmore object">
+					<div class="text-learnmore object">Se mere</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- SCRIPT -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+
+	$(window).on('beforeunload', function(){
+		$(".blank").fadeIn(300);
+		$("#main-wrapper-menu,#A1-main,#A2,#A3,#A4,#A5,#A6,#A7").animate({'opacity':'0'},300);
+		$(window).delay(1000).scrollTop(0);
+	});
+
+	$(document).ready(function() {
+
+		$(".blank").delay(1000).fadeOut(300);
+		$("#wrapper-head").delay(2000).animate({'opacity':'1'},500);
+		$("#wrapper-logo").delay(3200).animate({'opacity':'1'},300);
+		$("#wrapper-plus").delay(3200).animate({'opacity':'1'},300);
+	});
+
+	/*BUTTON HEADER LEARN MORE*/
+
+	$(document).on('touchstart mouseover', '#wrapper-learnmore', function(event){
+		event.stopPropagation();
+		event.preventDefault();
+		if(event.handled !== true) {
+
+			$(".bouton-learnmore").stop().css({'background-color':'#FFF'});
+			$(".text-learnmore").stop().css({'color':'#333'},250);
+
+			event.handled = true;
+		} else {
+			return false;
+		}
+	});
+
+	$(document).on('touchend mouseout', '#wrapper-learnmore', function(event){
+		event.stopPropagation();
+		event.preventDefault();
+		if(event.handled !== true) {
+
+			$(".bouton-learnmore").stop().css({'background-color':'transparent'});
+			$(".text-learnmore").stop().css({'color':'#FFF'},250);
+
+			event.handled = true;
+		} else {
+			return false;
+		}
+	});
+
+	$(document).on('click', '#wrapper-learnmore', function(event){
+		event.stopPropagation();
+		event.preventDefault();
+		if(event.handled !== true) {
+
+			window.location.href = "https://www.facebook.com/dendigitalefamilie";
+
+			event.handled = true;
+		} else {
+			return false;
+		}
+	});
+
+</script>
 
 </body>
 </html>
