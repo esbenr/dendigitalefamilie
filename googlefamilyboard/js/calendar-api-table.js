@@ -50,7 +50,7 @@ const renderCal = (cal, startDate, endDate) => {
 
 const renderHeader = (startDate, endDate) => {
     let html = `<table><tr class="header">
-      <td class="spacer"><a href="setup.html">Settings</a></td>`;
+      <td class="spacer"><a href="configure.html">Settings</a></td>`;
     let day = moment(startDate);
     while (day.isSameOrBefore(endDate)) {
         html += `<td class="day">${day.format('dddd').capitalizeFirstLetter()}</td>`;
@@ -94,6 +94,22 @@ const init = () => {
 
     loadColors();
     loadCalendars(calendars, startDate, endDate);
+};
+
+const loadCalendars = (calendars, startDate, endDate) => {
+    var request = gapi.client.request({
+        'path': 'https://www.googleapis.com/calendar/v3/users/me/calendarList'
+    });
+
+    request.execute(function(response) {
+        $.each(calendars, function(index, calendar){
+            let matchingCal = response.items.find(function(cal){
+                return cal.id == calendar.name;
+            });
+            calendar.colorId = matchingCal.colorId;
+        });
+        draw(calendars, startDate, endDate);
+    })
 };
 
 const draw = (calendars, startDate, endDate) => {
