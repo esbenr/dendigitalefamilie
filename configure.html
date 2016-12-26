@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Family Board configuration</title>
+
+    <link rel="stylesheet" type="text/css" href="css/configure.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+
+    <script type="text/javascript" src="js/auth-api.js"></script>
+    <script type="text/javascript" src="js/configuration-api.js"></script>
+    <script type="text/javascript" src="js/color-api.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+    <script type="text/javascript">
+
+        function persist() {
+            let calendars = [];
+            $("input:checkbox[name=calendarId]:checked").each(function(){
+                let alias = $(this).siblings("input:text[name=calendarAlias]").val();
+                let id = $(this).val();
+
+                if(alias.length > 0 && id.length > 0) {
+                    calendars.push({
+                        name: id,
+                        alias: alias
+                    });
+                }
+            });
+            console.log(calendars);
+
+            if (calendars.length == 0) {
+                localStorage.removeItem('calendars');
+                return false;
+            }
+
+            localStorage.setItem('calendars', JSON.stringify(calendars));
+            return true;
+        }
+
+        $(function() {
+            console.log( "ready!" );
+            $(".saveButton").click(function(e){
+                e.preventDefault();
+                persist();
+
+                window.location.href = "index.html";
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="title">
+        Google Family Board konfiguration
+    </div>
+    <div class="description">
+        Google Family Board benytter din google kalender til at vise en ugeplan for indeværende uge.<br>
+        Vælg kalender og angiv et alias til hver kalender, du vil have vist.
+    </div>
+    <div class="calendars">
+
+    </div>
+    <div class="caption">* Alias <span class="strong">SKAL</span> tilføjes hvis kalenderen skal vises.</div>
+    <div class="buttons">
+        <input class="saveButton" type="button" value="Gem" />
+    </div>
+</div>
+</body>
+</html>
