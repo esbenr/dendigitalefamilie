@@ -3,9 +3,11 @@ const loadColors = () => {
         'path': 'https://www.googleapis.com/calendar/v3/colors'
     });
 
-    request.execute(function(response) {
-        makeStyleSheet(response.calendar, 'data-cal-color');
-        makeStyleSheet(response.event, 'data-e-color');
+    request.then(function(response) {
+        makeStyleSheet(response.result.calendar, 'data-cal-color');
+        makeStyleSheet(response.result.event, 'data-e-color');
+    }, function(reason) {
+        console.log('Loading colors failed. ' + reason);
     })
 };
 
