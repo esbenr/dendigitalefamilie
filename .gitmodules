@@ -1,0 +1,4 @@
+[submodule "googlefamilyboard"]
+	path = googlefamilyboard
+	url = https://github.com/esbenr/googlefamilyboard.git
+	branch = master
